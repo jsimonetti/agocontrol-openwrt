@@ -11,6 +11,8 @@ This repository is to be used as feed in the openwrt buildroot.
 Create a buildroot as per instructions on the openwrt website.
 
 Add this repository as a feed in feeds.conf
+$ src-git agocontrol https://github.com/jsimonetti/agocontrol-openwrt
+or (if checked out locally)
 $ src-link agocontrol <pwd>/agocontrol-openwrt/openwrt-feed
 
 Update feeds and install packages in the buildroot
