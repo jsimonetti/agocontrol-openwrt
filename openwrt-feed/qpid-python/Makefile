@@ -1,9 +1,3 @@
-#
-# Copyright (C) 2008-2010 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
 
 include $(TOPDIR)/rules.mk
 
@@ -19,8 +13,6 @@ PKG_BUILD_DIR := $(BUILD_DIR)/qpid-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 $(call include_mk, python-package.mk)
-
-#PKG_UNPACK:=unzip -d $(PKG_BUILD_DIR) $(DL_DIR)/$(PKG_SOURCE)
 
 define Package/qpid-python
   SECTION:=agocontrol

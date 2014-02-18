@@ -1,9 +1,3 @@
-#
-# Copyright (C) 2008-2010 OpenWrt.org
-#
-# This is free software, licensed under the GNU General Public License v2.
-# See /LICENSE for more information.
-#
 
 include $(TOPDIR)/rules.mk
 
@@ -28,7 +22,6 @@ define Package/libjsoncpp
   DEPENDS:=+libstdcpp
   URL:=http://jsoncpp.sf.net
 endef
-#. /home/jeroen/dev/openwrt/include/shell.sh; gzip -dc /home/jeroen/dev/openwrt/dl/jsoncpp-src-0.5.0.tar.gz | /bin/tar -C /home/jeroen/dev/openwrt/build_dir/target-mips_34kc_uClibc-0.9.33.2/jsoncpp-src-0.5.0/.. -xf -
 
 define Build/Prepare
 
