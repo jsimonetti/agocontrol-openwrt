@@ -23,7 +23,7 @@ Index: include/json/version.h
 +#ifndef JSON_VERSION_H_INCLUDED
 +# define JSON_VERSION_H_INCLUDED
 +
-+#define JSON_CPP_VERSION 0.6.0-dev
++#define JSON_CPP_VERSION 0.5.0
 +
 +#endif
 Index: include/CMakeLists.txt
@@ -118,7 +118,7 @@ Index: FindJsonCpp.cmake
 +#
 +# Usage examples
 +#   find_package(JsonCpp REQUIRED)
-+#   find_package(JsonCpp 0.6.0)
++#   find_package(JsonCpp 0.5.0)
 +#
 +
 +INCLUDE (FindPackageHandleStandardArgs)
