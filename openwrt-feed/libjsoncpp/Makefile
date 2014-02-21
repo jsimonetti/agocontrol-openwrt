@@ -31,15 +31,15 @@ define Build/Prepare
 endef
 
 define Build/InstallDev
-	mkdir -p $(1)/usr/lib
-	$(LN) -sf libjsoncpp.so.0 $(1)/usr/lib/libjsoncpp.so
+	$(INSTALL_DIR) $(1)/usr/include/jsoncpp/json
+	$(CP) $(PKG_INSTALL_DIR)/usr/include/json/{autolink,config,features,forwards,json,reader,value,version,writer}.h $(1)/usr/include/jsoncpp/json/
 endef
 
 
 define Package/libjsoncpp/install
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson_cpp.so.$(PKG_VERSION) $(1)/usr/lib/libjsoncpp.so.$(PKG_VERSION)
-	$(LN) -sf libjsoncpp.so.$(PKG_VERSION) $(1)/usr/lib/libjsoncpp.so.0
+	$(LN) libjsoncpp.so.$(PKG_VERSION) $(1)/usr/lib/libjsoncpp.so
 endef
 
 
