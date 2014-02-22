@@ -24,7 +24,6 @@ define Package/libjsoncpp
 endef
 
 define Build/Prepare
-
 	. $(INCLUDE_DIR)/shell.sh
 	gzip -dc $(DL_DIR)/$(PKG_SOURCE) | $(TAR) -C $(BUILD_DIR) -xf -
 	cd $(PKG_BUILD_DIR) && $(PATCH) -p0 < $(SOURCE)/patches/cmake_support.patch
@@ -34,15 +33,15 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include/jsoncpp/json
 	$(CP) $(PKG_INSTALL_DIR)/usr/include/json/{autolink,config,features,forwards,json,reader,value,version,writer}.h $(1)/usr/include/jsoncpp/json/
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson_cpp.so.$(PKG_VERSION) $(1)/usr/lib/libjsoncpp.so.$(PKG_VERSION)
-	$(LN) libjsoncpp.so.$(PKG_VERSION) $(1)/usr/lib/libjsoncpp.so
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson_cpp.so.$(PKG_VERSION) $(1)/usr/lib
+	$(LN) libjson_cpp.so.$(PKG_VERSION) $(1)/usr/lib/libjson_cpp.so
 endef
 
 
 define Package/libjsoncpp/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson_cpp.so.$(PKG_VERSION) $(1)/usr/lib/libjsoncpp.so.$(PKG_VERSION)
-	$(LN) libjsoncpp.so.$(PKG_VERSION) $(1)/usr/lib/libjsoncpp.so
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libjson_cpp.so.$(PKG_VERSION) $(1)/usr/lib
+	$(LN) libjson_cpp.so.$(PKG_VERSION) $(1)/usr/lib/libjson_cpp.so
 endef
 
 
