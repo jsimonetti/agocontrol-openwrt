@@ -12,25 +12,7 @@ PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 
-#PKG_BUILD_REQUIRES:=libjsoncpp,libuuid
-
 include $(INCLUDE_DIR)/package.mk
-
-#define Package/agocontrol
-#  SECTION:=agocontrol
-#  CATEGORY:=AgoControl
-#  TITLE:=agocontrol
-#  DEPENDS:=+libjsoncpp +libyaml-cpp +libagoclient +libsqlite3
-#  URL:=http://www.agocontrol.com
-#endef
-
-define Package/agocontrol-resolver
-  SECTION:=agocontrol
-  CATEGORY:=AgoControl
-  TITLE:=agocontrol-resolver
-  DEPENDS:=+libjsoncpp +libyaml-cpp +libagoclient +libsqlite3
-  URL:=http://www.agocontrol.com
-endef
 
 define Package/libagoclient
   SECTION:=agocontrol
@@ -40,20 +22,42 @@ define Package/libagoclient
   URL:=http://www.agocontrol.com
 endef
 
-define Build/InstallDev
-	mkdir -p $(1)/usr/include/agocontrol
-	$(CP) $(PKG_INSTALL_DIR)/usr/include/agocontrol/* $(1)/usr/include/agocontrol
+define Package/agocontrol-resolver
+  SECTION:=agocontrol
+  CATEGORY:=AgoControl
+  TITLE:=agocontrol-resolver
+  DEPENDS:=+libjsoncpp +libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem
+  URL:=http://www.agocontrol.com
 endef
 
-define Package/agocontrol-resolver/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libqpidcommon.so.* $(1)/usr/lib/
+define Package/agocontrol-rpc
+  SECTION:=agocontrol
+  CATEGORY:=AgoControl
+  TITLE:=agocontrol-rpc
+  DEPENDS:=+libjsoncpp +libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem
+  URL:=http://www.agocontrol.com
 endef
+
+#define Build/InstallDev
+#	mkdir -p $(1)/usr/include/agocontrol
+#	$(CP) $(PKG_INSTALL_DIR)/usr/include/agocontrol/* $(1)/usr/include/agocontrol
+#endef
 
 define Package/libagoclient/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libqpidmessaging.so.* $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/shared/libagoclient.so* $(1)/usr/lib
+endef
+
+define Package/agocontrol-resolver/install
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(CP) $(PKG_BUILD_DIR)/core/resolver/agoresolver #(1)/usr/bin
+endef
+
+define Package/agocontrol-rpc/install
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(CP) $(PKG_BUILD_DIR)/core/resolver/agorpc #(1)/usr/bin
 endef
 
 $(eval $(call BuildPackage,libagoclient))
 $(eval $(call BuildPackage,agocontrol-resolver))
+$(eval $(call BuildPackage,agocontrol-rpc))
