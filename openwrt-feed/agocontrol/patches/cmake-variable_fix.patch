@@ -1,0 +1,539 @@
+--- agocontrol-2014-02-11.org/conf/agomeloware.init.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/agomeloware.init.in	2014-02-22 17:43:27.987150741 +0100
+@@ -10,4 +10,4 @@
+ stop on runlevel [!2345]
+ 
+ respawn
+-exec @BINDIR/agomeloware.py
++exec @BINDIR@/agomeloware.py
+--- agocontrol-2014-02-11.org/conf/agoowfs.init.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/agoowfs.init.in	2014-02-22 17:43:27.987150741 +0100
+@@ -10,4 +10,4 @@
+ stop on runlevel [!2345]
+ 
+ respawn
+-exec @BINDIR/agoowfs.py
++exec @BINDIR@/agoowfs.py
+--- agocontrol-2014-02-11.org/conf/agoresolver.init.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/agoresolver.init.in	2014-02-22 17:43:27.987150741 +0100
+@@ -10,4 +10,4 @@
+ stop on runlevel [!2345]
+ 
+ respawn
+-exec @BINDIR/agoresolver.py
++exec @BINDIR@/agoresolver.py
+--- agocontrol-2014-02-11.org/conf/agozwave.init.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/agozwave.init.in	2014-02-22 17:43:27.987150741 +0100
+@@ -10,5 +10,5 @@
+ stop on runlevel [!2345]
+ 
+ respawn
+-chdir @BINDIR
+-exec @BINDIR/agozwave
++chdir @BINDIR@
++exec @BINDIR@/agozwave
+--- agocontrol-2014-02-11.org/conf/conf.d/rpc.conf.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/conf.d/rpc.conf.in	2014-02-22 17:43:27.987150741 +0100
+@@ -1,5 +1,5 @@
+ [rpc]
+ ports=8008,8009s
+-htdocs=@HTMLDIR
+-certificate=@CONFDIR/rpc/rpc_cert.pem
++htdocs=@HTMLDIR@
++certificate=@CONFDIR@/rpc/rpc_cert.pem
+ numthreads=50
+--- agocontrol-2014-02-11.org/conf/systemd/agoapc.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoapc.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control APC Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoapc.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoapc.py
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agoasterisk.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoasterisk.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Asterisk PBX interface
+ 
+ [Service]
+-ExecStart=@BINDIR/agoasterisk.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoasterisk.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agoblinkm.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoblinkm.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control blinkm i2c device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoblinkm
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoblinkm
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agodatalogger.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agodatalogger.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Data Logger
+ 
+ [Service]
+-ExecStart=@BINDIR/agodatalogger
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agodatalogger
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agodmx.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agodmx.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control dmx device
+ 
+ [Service]
+-ExecStart=@BINDIR/agodmx
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agodmx
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agoenigma2.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoenigma2.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Enigma2/Dreambox interface
+ 
+ [Service]
+-ExecStart=@BINDIR/agoenigma2.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoenigma2.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agoevent.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoevent.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Event Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoevent
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoevent
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agofirmata.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agofirmata.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Arduino Firmata Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agofirmata
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agofirmata
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agogc100.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agogc100.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control gc100 interface
+ 
+ [Service]
+-ExecStart=@BINDIR/agogc100.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agogc100.py
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agoi2c.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoi2c.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control i2c device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoi2c
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoi2c
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agoirtransethernet.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoirtransethernet.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control IRTrans Ethernet infrared blaster Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoirtrans_ethernet
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoirtrans_ethernet
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agoiscp.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoiscp.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Onkyo ISCP device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoiscp.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoiscp.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agojointspace.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agojointspace.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control JointSpace Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agojointspace.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agojointspace.py
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agoknx.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoknx.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control KNX Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoknx
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoknx
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agokwikwai.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agokwikwai.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Kwikwai HDMI CEC Bridge Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agokwikwai
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agokwikwai
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agomeloware.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agomeloware.service.in	2014-02-22 17:43:27.987150741 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Meloware Lightswitchserver Gateway
+ 
+ [Service]
+-ExecStart=@BINDIR/agomeloware.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agomeloware.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agoowfs.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoowfs.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control 1-Wire Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoowfs.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoowfs.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agoradiothermostat.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoradiothermostat.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control radio thermostat device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoradiothermostat.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoradiothermostat.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agorain8net.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agorain8net.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control rain8net Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agorain8net
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agorain8net
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=agocontrol
+--- agocontrol-2014-02-11.org/conf/systemd/agoresolver.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoresolver.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Resolver
+ 
+ [Service]
+-ExecStart=@BINDIR/agoresolver
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoresolver
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agorpc.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agorpc.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control HTTP RPC interface
+ 
+ [Service]
+-ExecStart=@BINDIR/agorpc
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agorpc
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agoscenario.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agoscenario.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Scenario Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agoscenario
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agoscenario
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agosimulator.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agosimulator.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Device simulator
+ 
+ [Service]
+-ExecStart=@BINDIR/agosimulator.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agosimulator.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agosqueezeboxserver.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agosqueezeboxserver.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Squeezebox device
+ 
+ [Service]
+-ExecStart=@BINDIR/agosqueezeboxserver.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agosqueezeboxserver.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agotimer.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agotimer.service.in	2014-02-22 17:43:27.995150883 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Timer
+ 
+ [Service]
+-ExecStart=@BINDIR/agotimer
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agotimer
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agowebcam.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agowebcam.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control webcam device
+ 
+ [Service]
+-ExecStart=@BINDIR/agowebcam
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agowebcam
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agox10.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agox10.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control X10 Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agox10.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agox10.py
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/agozwave.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/agozwave.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control Z-Wave Device
+ 
+ [Service]
+-ExecStart=@BINDIR/agozwave
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/agozwave
++WorkingDirectory=@BINDIR@
+ StandardOutput=syslog
+ StandardError=syslog
+ Restart=always
+--- agocontrol-2014-02-11.org/conf/systemd/raspi1wGPIO.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/raspi1wGPIO.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control raspberry pi 1-wire GPIO Device
+ 	
+ [Service]
+-ExecStart=@BINDIR/raspi1wGPIO.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/raspi1wGPIO.py
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=root
+--- agocontrol-2014-02-11.org/conf/systemd/raspiGPIO.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/raspiGPIO.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago control raspberry pi GPIO Device
+ 	
+ [Service]
+-ExecStart=@BINDIR/raspiGPIO.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/raspiGPIO.py
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=root
+--- agocontrol-2014-02-11.org/conf/systemd/raspiMCP3xxxGPIO.service.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/systemd/raspiMCP3xxxGPIO.service.in	2014-02-22 17:43:27.991150812 +0100
+@@ -2,8 +2,8 @@
+ Description=ago raspberry pi MCPxxx GPIO device
+ 	
+ [Service]
+-ExecStart=@BINDIR/raspiMCP3xxxGPIO.py
+-WorkingDirectory=@BINDIR
++ExecStart=@BINDIR@/raspiMCP3xxxGPIO.py
++WorkingDirectory=@BINDIR@
+ Restart=always
+ RestartSec=2
+ User=root
+--- agocontrol-2014-02-11.org/conf/sysvinit/agocontrol.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/conf/sysvinit/agocontrol.in	2014-02-22 17:43:27.987150741 +0100
+@@ -10,7 +10,7 @@
+ 
+ . /lib/lsb/init-functions
+ 
+-BIN_PATH=@BINDIR/
++BIN_PATH=@BINDIR@/
+ PID_PATH=/var/run/
+ APPS="agorpc agodatalogger agoevent agoresolver agoscenario agotimer agosqueezebox.py agoalert.py agoipx800"
+ 
+--- agocontrol-2014-02-11.org/core/agocontrol-init-script.sh.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/core/agocontrol-init-script.sh.in	2014-02-22 17:43:27.999150955 +0100
+@@ -26,8 +26,8 @@
+ do_start()
+ {
+ 	echo -n "Starting $DESC:"
+-	/usr/bin/screen -d -S agoresolver -m @BINDIR/agoresolver
+-	/usr/bin/screen -d -S agoadmin -m @BINDIR/agoadmin.py
++	/usr/bin/screen -d -S agoresolver -m @BINDIR@/agoresolver
++	/usr/bin/screen -d -S agoadmin -m @BINDIR@/agoadmin.py
+ 	echo "."
+ }
+ 
+--- agocontrol-2014-02-11.org/core/lua/command.lua.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/core/lua/command.lua.in	2014-02-22 17:43:27.999150955 +0100
+@@ -1,4 +1,4 @@
+-dofile("@CONFDIR/lua/helper.lua")
++dofile("@CONFDIR@/lua/helper.lua")
+ 
+ for key,value in pairs(content) do print(key,value) end
+ -- for key,value in pairs(inventory.devices) do
+--- agocontrol-2014-02-11.org/core/rpc/activate.cgi.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/core/rpc/activate.cgi.in	2014-02-22 17:43:27.999150955 +0100
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python
+ import sys
+-sys.path.append('@BINDIR')
++sys.path.append('@BINDIR@')
+ import agoclient
+ 
+ import cgi
+--- agocontrol-2014-02-11.org/scripts/agososreport.sh.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/scripts/agososreport.sh.in	2014-02-22 17:43:27.999150955 +0100
+@@ -3,7 +3,7 @@
+ echo creating ago control sosreport, will be saved in $TMPFILE
+ (
+ echo ==== CONFG ====
+-cat @CONFDIR/config.ini | grep -v ^uuid | grep -v ^#
++cat @CONFDIR@/config.ini | grep -v ^uuid | grep -v ^#
+ echo ==== PSINF ====
+ ps auxw | grep ago | grep -v grep
+ echo ==== QPIDD ====
+@@ -22,7 +22,7 @@
+ echo ==== LSUSB ====
+ lsusb -v
+ echo ==== UDEVI ====
+-grep "/dev" @CONFDIR/config.ini | cut -d "=" -f 2 | while read file; do echo "$file" $(udevadm info -q path -n "$file"); done
++grep "/dev" @CONFDIR@/config.ini | cut -d "=" -f 2 | while read file; do echo "$file" $(udevadm info -q path -n "$file"); done
+ echo ==== DMESG ====
+ dmesg
+ echo ==== SYSLG ====
+--- agocontrol-2014-02-11.org/shared/agoclient.h.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/shared/agoclient.h.in	2014-02-22 17:43:27.995150883 +0100
+@@ -21,10 +21,10 @@
+ 
+ #include "CDataFile.h"
+ 
+-#define BINDIR "@BINDIR"
+-#define CONFDIR "@CONFDIR"
+-#define LOCALSTATEDIR "@LOCALSTATEDIR"
+-#define HTMLDIR "@HTMLDIR"
++#define BINDIR "@BINDIR@"
++#define CONFDIR "@CONFDIR@"
++#define LOCALSTATEDIR "@LOCALSTATEDIR@"
++#define HTMLDIR "@HTMLDIR@"
+ 
+ #define CONFIG_FILE_PATH CONFDIR "/conf.d"
+ 
+--- agocontrol-2014-02-11.org/shared/agoclient.py.in	2014-02-11 14:01:50.000000000 +0100
++++ agocontrol-2014-02-11/shared/agoclient.py.in	2014-02-22 17:43:27.999150955 +0100
+@@ -16,8 +16,8 @@
+ 
+ syslog.openlog(sys.argv[0], syslog.LOG_PID, syslog.LOG_DAEMON)
+ 
+-BINDIR = '@BINDIR'
+-CONFDIR = '@CONFDIR'
++BINDIR = '@BINDIR@'
++CONFDIR = '@CONFDIR@'
+ 
+ CONFIG_LOCK = Lock()
+ 
