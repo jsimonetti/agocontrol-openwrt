@@ -1,0 +1,11 @@
+--- agocontrol-2014-02-11.org/shared/Makefile	2014-02-21 15:31:46.631011902 +0100
++++ agocontrol-2014-02-11/shared/Makefile	2014-02-21 22:27:39.740503314 +0100
+@@ -9,7 +9,7 @@
+ all: libagoclient.so agoclient.py
+ 
+ libagoclient.so: agoclient.h agoclient.o CDataFile.o
+-	$(LD) -o $(@)$(LIB_VER) $(LDFLAGS) $^ -lqpidmessaging -lqpidtypes -luuid -ljsoncpp
++	$(LD) -o $(@)$(LIB_VER) $(LDFLAGS) agoclient.o CDataFile.o -lqpidmessaging -lqpidtypes -luuid -ljsoncpp
+ 	test -h $(@) || ln -s $(@)$(LIB_VER) $(@)
+ 
+ agoclient.py: agoclient.py.in
