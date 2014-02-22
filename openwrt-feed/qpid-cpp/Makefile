@@ -9,7 +9,6 @@ PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://apache.cs.uu.nl/dist/qpid/$(PKG_VERSION)
 PKG_SHA1SUM:=a1449cdb5b6319f0c0e47a47fbd97d539e79804d
 
-PKG_BUILD_DEPENDS:=boost-test
 PKG_BUILD_DIR:=$(BUILD_DIR)/qpidc-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
@@ -39,7 +38,7 @@ define Package/libqpidcommon2
   CATEGORY:=AgoControl
   SUBMENU:=Qpid
   TITLE:=libqpidcommon2
-  DEPENDS:=+boost-program_options +boost-system +libqpidtypes1 +libuuid +libstdcpp
+  DEPENDS:=+boost-program_options +boost-system +libqpidtypes1 +libuuid +libstdcpp +boost-test
   URL:=http://qpid.apache.org
 endef
 
@@ -66,7 +65,7 @@ define Package/qpidd
   CATEGORY:=AgoControl
   SUBMENU:=Qpid
   TITLE:=qpidd
-  DEPENDS:=+boost-program_options +libqpidbroker2 +libqpidclient2 +libqpidcommon2 +libqpidmessaging2 +boost-test
+  DEPENDS:=+boost-program_options +libqpidbroker2 +libqpidclient2 +libqpidcommon2 +libqpidmessaging2
   URL:=http://qpid.apache.org
 endef
 
@@ -151,9 +150,9 @@ exit 0
 endef
 
 
+$(eval $(call BuildPackage,qpidd))
 $(eval $(call BuildPackage,libqpidbroker2))
 $(eval $(call BuildPackage,libqpidclient2))
 $(eval $(call BuildPackage,libqpidcommon2))
 $(eval $(call BuildPackage,libqpidmessaging2))
 $(eval $(call BuildPackage,libqpidtypes1))
-$(eval $(call BuildPackage,qpidd))
