@@ -41,11 +41,11 @@ Index: src/lib_json/CMakeLists.txt
 +# Source files to compile with executable
 +file(GLOB_RECURSE LIBJSONCPP_SOURCE_FILES *.cpp)
 +
-+ADD_LIBRARY(json_cpp SHARED ${LIBJSONCPP_SOURCE_FILES})
-+SET_TARGET_PROPERTIES(json_cpp PROPERTIES VERSION ${JSON_CPP_VERSION} SOVERSION ${JSON_CPP_VERSION})
++ADD_LIBRARY(jsoncpp SHARED ${LIBJSONCPP_SOURCE_FILES})
++SET_TARGET_PROPERTIES(jsoncpp PROPERTIES VERSION ${JSON_CPP_VERSION} SOVERSION ${JSON_CPP_VERSION})
 +
 +# Install instructions for this target
-+INSTALL(TARGETS json_cpp 
++INSTALL(TARGETS jsoncpp 
 +  RUNTIME DESTINATION bin
 +  LIBRARY DESTINATION lib
 +  ARCHIVE DESTINATION lib
@@ -59,7 +59,7 @@ Index: src/jsontestrunner/CMakeLists.txt
 +file(GLOB_RECURSE JSONTESTRUNNER_SOURCE_FILES *.cpp)
 +
 +ADD_EXECUTABLE(jsontestrunner ${JSONTESTRUNNER_SOURCE_FILES})
-+TARGET_LINK_LIBRARIES(jsontestrunner json_cpp)
++TARGET_LINK_LIBRARIES(jsontestrunner jsoncpp)
 Index: src/CMakeLists.txt
 ===================================================================
 --- src/CMakeLists.txt	(revision 0)
@@ -77,13 +77,13 @@ Index: src/test_lib_json/CMakeLists.txt
 +file(GLOB_RECURSE TESTLIBJSON_SOURCE_FILES *.cpp)
 +
 +ADD_EXECUTABLE(test_lib_json ${TESTLIBJSON_SOURCE_FILES})
-+TARGET_LINK_LIBRARIES(test_lib_json json_cpp)
++TARGET_LINK_LIBRARIES(test_lib_json jsoncpp)
 Index: FindJsonCpp.cmake
 ===================================================================
 --- FindJsonCpp.cmake	(revision 0)
 +++ FindJsonCpp.cmake	(revision 0)
 @@ -0,0 +1,98 @@
-+# Module for locating the json_cpp library.
++# Module for locating the jsoncpp library.
 +#
 +# Add this file in your project before using it in a subfolder cmake/Modules and then 
 +# add this in your project : 
@@ -110,10 +110,10 @@ Index: FindJsonCpp.cmake
 +#     Indicates whether the library has been found.
 +#
 +#   JSONCPP_INCLUDE_DIRS
-+#     Points to the json_cpp include directory.
++#     Points to the jsoncpp include directory.
 +#
 +#   JSONCPP_LIBRARIES
-+#     Points to the json_cpp libraries that should be passed to
++#     Points to the jsoncpp libraries that should be passed to
 +#     target_link_libararies.
 +#
 +# Usage examples
@@ -126,25 +126,25 @@ Index: FindJsonCpp.cmake
 +FIND_PATH (JSONCPP_ROOT_DIR
 +  NAMES json/json.h include/json/json.h 
 +  PATHS ENV JSONCPP_ROOT_DIR
-+  DOC "json_cpp root directory")
++  DOC "jsoncpp root directory")
 +
 +# Re-use the previous path:
 +FIND_PATH (JSONCPP_INCLUDE_DIR
 +  NAMES json/json.h
 +  HINTS ${JSONCPP_ROOT_DIR}
 +  PATH_SUFFIXES include
-+  DOC "json_cpp include directory")
++  DOC "jsoncpp include directory")
 +
 +FIND_LIBRARY (JSONCPP_LIBRARY_RELEASE
-+  NAMES json_cpp
++  NAMES jsoncpp
 +  HINTS ${JSONCPP_ROOT_DIR}
 +  PATH_SUFFIXES ${_JSONCPP_POSSIBLE_LIB_SUFFIXES}
-+  DOC "json_cpp release library")
++  DOC "jsoncpp release library")
 +
 +IF (NOT DEFINED JSONCPP_LIBRARIES)
 +  IF (JSONCPP_LIBRARY_RELEASE)
 +    SET (JSONCPP_LIBRARY ${JSONCPP_LIBRARY_RELEASE} CACHE DOC
-+      "json_cpp library")
++      "jsoncpp library")
 +  ENDIF (JSONCPP_LIBRARY_RELEASE)
 +ENDIF (NOT DEFINED JSONCPP_LIBRARIES)
 +
@@ -179,7 +179,7 @@ Index: FindJsonCpp.cmake
 +MARK_AS_ADVANCED (JSONCPP_ROOT_DIR JSONCPP_INCLUDE_DIR JSONCPP_LIBRARY
 +  JSONCPP_LIBRARY_DEBUG JSONCPP_LIBRARY_RELEASE)
 +
-+FIND_PACKAGE_HANDLE_STANDARD_ARGS (json_cpp REQUIRED_VARS JSONCPP_ROOT_DIR
++FIND_PACKAGE_HANDLE_STANDARD_ARGS (jsoncpp REQUIRED_VARS JSONCPP_ROOT_DIR
 +  JSONCPP_INCLUDE_DIR JSONCPP_LIBRARY VERSION_VAR JSONCPP_VERSION)
 Index: CMakeLists.txt
 ===================================================================
