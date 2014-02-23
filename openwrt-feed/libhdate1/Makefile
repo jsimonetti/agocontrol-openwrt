@@ -1,15 +1,15 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=libhdate
+PKG_NAME:=libhdate1
 PKG_VERSION:=1.6.02
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE:=libhdate-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/libhdate
 PKG_SHA1SUM:=7548f3014bcaf6138c8b0fde060fa614a6934140
 
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/libhdate-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -17,7 +17,6 @@ include $(INCLUDE_DIR)/package.mk
 define Package/libhdate1
   SECTION:=agocontrol
   CATEGORY:=AgoControl
-  DEPENDS:=+libssp
   TITLE:=YAML parser and emitter in C++
   URL:=http://code.google.com/p/yaml-cpp
 endef
