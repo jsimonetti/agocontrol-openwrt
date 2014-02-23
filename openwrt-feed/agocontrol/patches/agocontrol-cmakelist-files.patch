@@ -1,6 +1,6 @@
 --- agocontrol-2014-02-11.org/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ agocontrol-2014-02-11/CMakeLists.txt	2014-02-22 17:22:13.652256974 +0100
-@@ -0,0 +1,37 @@
+@@ -0,0 +1,38 @@
 +cmake_minimum_required (VERSION 2.6)
 +project (agocontrol)
 +
@@ -17,6 +17,7 @@
 +set (LOCALSTATEDIR /var/opt/agocontrol)
 +set (HTMLDIR /opt/agocontrol/html)
 +
++OPTION(BUILD_AGOLUA "Build agolua" ON)
 +
 +# configure a header file to pass some of the CMake settings
 +# to the source code
@@ -108,7 +109,7 @@
 +)
 --- agocontrol-2014-02-11.org/core/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ agocontrol-2014-02-11/core/CMakeLists.txt	2014-02-22 16:45:59.105362244 +0100
-@@ -0,0 +1,23 @@
+@@ -0,0 +1,27 @@
 +cmake_minimum_required (VERSION 2.6)
 +
 +# configure a header file to pass some of the CMake settings
@@ -130,7 +131,11 @@
 +add_subdirectory (scenario)
 +add_subdirectory (event)
 +add_subdirectory (datalogger)
-+add_subdirectory (lua)
++
++if (BUILD_AGOLUA)
++  add_subdirectory (lua)
++endif()
++
 +add_subdirectory (security)
 --- agocontrol-2014-02-11.org/core/datalogger/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ agocontrol-2014-02-11/core/datalogger/CMakeLists.txt	2014-02-22 13:57:11.041958763 +0100
@@ -197,7 +202,7 @@
 +target_link_libraries (messagesend ${MESSAGESEND_LIBRARIES})
 --- agocontrol-2014-02-11.org/core/resolver/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ agocontrol-2014-02-11/core/resolver/CMakeLists.txt	2014-02-22 13:56:59.985762026 +0100
-@@ -0,0 +1,14 @@
+@@ -0,0 +1,17@
 +cmake_minimum_required (VERSION 2.6)
 +
 +file (GLOB_RECURSE AGORESOLVER_SOURCE_FILES *.cpp)
@@ -207,6 +212,9 @@
 +    jsoncpp
 +    sqlite3
 +    agoclient
++    pthread
++    boost_system
++    boost_filesystem
 +)
 +
 +# add the executable
@@ -214,13 +222,15 @@
 +target_link_libraries (agoresolver ${RESOLVER_LIBRARIES})
 --- agocontrol-2014-02-11.org/core/rpc/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ agocontrol-2014-02-11/core/rpc/CMakeLists.txt	2014-02-22 16:45:32.096877432 +0100
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,28 @@
 +cmake_minimum_required (VERSION 2.6)
 +
 +file (GLOB_RECURSE AGORPC_SOURCE_FILES *.cpp)
 +
 +set (RPC_LIBRARIES
 +    agoclient
++    dl
++    pthread
 +)
 +
 +include_directories(
@@ -243,11 +253,12 @@
 +)
 --- agocontrol-2014-02-11.org/core/scenario/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ agocontrol-2014-02-11/core/scenario/CMakeLists.txt	2014-02-22 14:03:37.073002132 +0100
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,10 @@
 +cmake_minimum_required (VERSION 2.6)
 +
 +set (SCENARIO_LIBRARIES
 +    agoclient
++    pthread
 +)
 +
 +# add the executable
@@ -255,11 +266,12 @@
 +target_link_libraries (agoscenario ${SCENARIO_LIBRARIES})
 --- agocontrol-2014-02-11.org/core/security/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ agocontrol-2014-02-11/core/security/CMakeLists.txt	2014-02-22 14:04:37.738116113 +0100
-@@ -0,0 +1,9 @@
+@@ -0,0 +1,10 @@
 +cmake_minimum_required (VERSION 2.6)
 +
 +set (SECURITY_LIBRARIES
 +    agoclient
++    pthread
 +)
 +
 +# add the executable
@@ -267,7 +279,7 @@
 +target_link_libraries (agosecurity ${SECURITY_LIBRARIES})
 --- agocontrol-2014-02-11.org/core/timer/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 +++ agocontrol-2014-02-11/core/timer/CMakeLists.txt	2014-02-22 14:00:48.917911968 +0100
-@@ -0,0 +1,12 @@
+@@ -0,0 +1,13 @@
 +cmake_minimum_required (VERSION 2.6)
 +
 +file (GLOB_RECURSE AGOTIMER_SOURCE_FILES *.cpp)
@@ -275,6 +287,7 @@
 +    agoclient
 +    boost_system
 +    hdate
++    pthread
 +)
 +
 +# add the executable
