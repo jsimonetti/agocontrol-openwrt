@@ -18,7 +18,7 @@ define Package/qpid-python
   SECTION:=agocontrol
   CATEGORY:=AgoControl
   SUBMENU:=Qpid
-  TITLE:=qpid-python
+  TITLE:=Python bindings for Apache Qpid
   DEPENDS:=+python +pyopenssl
   URL:=http://qpid.apache.org
 endef

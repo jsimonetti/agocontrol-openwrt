@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/libyaml-cpp
   SECTION:=agocontrol
   CATEGORY:=AgoControl
-  TITLE:=libyaml-cpp
+  TITLE:=YAML parser and emitter in C++
   URL:=http://code.google.com/p/yaml-cpp
 endef
 

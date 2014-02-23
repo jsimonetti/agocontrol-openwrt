@@ -14,59 +14,47 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/qpidc-$(PKG_VERSION)
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
-
-define Package/libqpidbroker2
+define Package/qpid/default
   SECTION:=agocontrol
   CATEGORY:=AgoControl
   SUBMENU:=Qpid
-  TITLE:=libqpidbroker2
-  DEPENDS:=+libqpidcommon2 +libstdcpp
   URL:=http://qpid.apache.org
+endef
+
+define Package/libqpidbroker2
+  $(call Package/qpid/default)
+  TITLE:=Library for Qpid daemon
+  DEPENDS:=+libqpidcommon2 +libstdcpp
 endef
 
 define Package/libqpidclient2
-  SECTION:=agocontrol
-  CATEGORY:=AgoControl
-  SUBMENU:=Qpid
-  TITLE:=libqpidclient2
+  $(call Package/qpid/default)
+  TITLE:=Library for AMQP clients
   DEPENDS:=+libqpidcommon2 +libstdcpp +libuuid
-  URL:=http://qpid.apache.org
 endef
 
 define Package/libqpidcommon2
-  SECTION:=agocontrol
-  CATEGORY:=AgoControl
-  SUBMENU:=Qpid
-  TITLE:=libqpidcommon2
+  $(call Package/qpid/default)
+  TITLE:=Library for common stuff
   DEPENDS:=+boost-program_options +boost-system +libqpidtypes1 +libuuid +libstdcpp +boost-test
-  URL:=http://qpid.apache.org
 endef
 
 define Package/libqpidmessaging2
-  SECTION:=agocontrol
-  CATEGORY:=AgoControl
-  SUBMENU:=Qpid
-  TITLE:=libqpidmessaging2
+  $(call Package/qpid/default)
+  TITLE:=Library for AMQP messages
   DEPENDS:=+libqpidclient2 +libqpidtypes1 +libstdcpp
-  URL:=http://qpid.apache.org
 endef
 
 define Package/libqpidtypes1
-  SECTION:=agocontrol
-  CATEGORY:=AgoControl
-  SUBMENU:=Qpid
-  TITLE:=libqpidtypes1
+  $(call Package/qpid/default)
+  TITLE:=Library for Qpid datatypes
   DEPENDS:=+libuuid +libstdcpp +boost-system +libpthread
-  URL:=http://qpid.apache.org
 endef
 
 define Package/qpidd
-  SECTION:=agocontrol
-  CATEGORY:=AgoControl
-  SUBMENU:=Qpid
-  TITLE:=qpidd
+  $(call Package/qpid/default)
+  TITLE:=Qpid daemon
   DEPENDS:=+boost-program_options +libqpidbroker2 +libqpidclient2 +libqpidcommon2 +libqpidmessaging2
-  URL:=http://qpid.apache.org
 endef
 
 define Package/qpidd/conffiles
