@@ -30,6 +30,7 @@ define Build/InstallDev
 	$(CP) $(PKG_BUILD_DIR)/src/{hdate,hdatepp}.h $(1)/usr/include/
 	$(INSTALL_DIR) $(1)/usr/lib
 	$(CP) $(PKG_BUILD_DIR)/src/.libs/libhdate.{so,la} $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/src/.libs/libhdate.so.* $(1)/usr/lib/
 endef
 
 
