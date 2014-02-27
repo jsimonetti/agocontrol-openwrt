@@ -4,21 +4,39 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=agocontrol
 PKG_VERSION:=$(shell date +%Y%m%d)
 PKG_RELEASE=$(shell date +%H%M%S)
-
-PKG_SOURCE_VERSION:=HEAD
-
+PKG_SOURCE_VERSION:=cmake-support
 PKG_SOURCE_URL:=http://agocontrol.com/agocontrol.git
-PKG_SOURCE_URL:=file:///home/jeroen/dev/agocontrol
+PKG_SOURCE_URL:=file:///home/jeroen/tmp/agocontrol
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
+
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 
-CMAKE_OPTIONS += -DCMAKE_BUILD_TYPE=RELEASE
+BINDIR:=/opt/agocontrol/bin
+ETCDIR:=/etc
+LIBDIR:=/usr/lib
+CONFDIR:=$(ETCDIR)/opt/agocontrol
+INCDIR:=/usr/include/agocontrol
+DATADIR:=/opt/agocontrol/var
+LOCALSTATEDIR:=/opt/agocontrol/var
+HTMLDIR:=/opt/agocontrol/html
+
+CMAKE_OPTIONS += -DCMAKE_BUILD_TYPE=RELEASE \
+                 -DBINDIR=$(BINDIR) \
+                 -DETCDIR=$(ETCDIR) \
+                 -DLIBDIR=$(LIBDIR) \
+                 -DCONFDIR=$(CONFDIR) \
+                 -DINCDIR=$(INCDIR) \
+                 -DDATADIR=$(DATADIR) \
+                 -DLOCALSTATEDIR=$(LOCALSTATEDIR) \
+                 -DHTMLDIR=$(HTMLDIR)
+
 
 
 define Package/agocontrol/default
@@ -63,18 +81,18 @@ define Package/agocontrol-common
   TITLE:=agocontrol-common
 endef
 
-define Package/agocontrol-security/install
+define Package/agocontrol-common/install
 	$(INSTALL_DIR) $(1)/etc/opt/agocontrol/conf.d
 	$(CP) $(PKG_INSTALL_DIR)/etc/opt/agocontrol/conf.d/system.conf $(1)/etc/opt/agocontrol/conf.d
 	$(CP) $(PKG_INSTALL_DIR)/etc/opt/agocontrol/schema.yaml $(1)/etc/opt/agocontrol
-	$(INSTALL_DIR) $(1)/var/opt/agocontrol
-	$(CP) $(PKG_INSTALL_DIR)/var/opt/agocontrol/inventory.sql $(1)/var/opt/agocontrol
-	$(CP) $(PKG_INSTALL_DIR)/var/opt/agocontrol/datalogger.sql $(1)/var/opt/agocontrol
+	$(INSTALL_DIR) $(1)/opt/agocontrol/var
+	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/var/inventory.sql $(1)/opt/agocontrol/var
+	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/var/datalogger.sql $(1)/opt/agocontrol/var
 	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agodrain.py $(1)/opt/agocontrol/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/myavahi.py $(1)/opt/agocontrol/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agoctrl.sh $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/convert-config.sh $(1)/opt/agocontrol/bin
+	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/convert-config.py $(1)/opt/agocontrol/bin
 	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agososreport.sh $(1)/opt/agocontrol/bin
 	$(INSTALL_DIR) $(1)/etc/security/limits.d/agocontrol.conf
 	$(CP) $(PKG_INSTALL_DIR)/etc/security/limits.d/agocontrol.conf/security-limits.conf $(1)/etc/security/limits.d/agocontrol.conf

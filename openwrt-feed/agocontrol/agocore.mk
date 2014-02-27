@@ -71,7 +71,7 @@ endef
 define Package/agocontrol-datalogger
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-datalogger
-  DEPENDS:=+libagoclient +boost-date_time
+  DEPENDS:=+libagoclient +boost-date_time +libsqlite3
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-datalogger),)
@@ -190,31 +190,4 @@ endef
 
 
 ##
-
-
-define Package/agocontrol-common
-  $(call Package/agocontrol/default)
-  TITLE:=agocontrol-common
-  DEPENDS:=+libagoclient
-endef
-
-define Package/agocontrol-security/install
-	$(INSTALL_DIR) $(1)/etc/opt/agocontrol/conf.d
-	$(CP) $(PKG_INSTALL_DIR)/etc/opt/agocontrol/conf.d/system.conf $(1)/etc/opt/agocontrol/conf.d
-	$(CP) $(PKG_INSTALL_DIR)/etc/opt/agocontrol/schema.yaml $(1)/etc/opt/agocontrol
-	$(INSTALL_DIR) $(1)/var/opt/agocontrol
-	$(CP) $(PKG_INSTALL_DIR)/var/opt/agocontrol/inventory.sql $(1)/var/opt/agocontrol
-	$(CP) $(PKG_INSTALL_DIR)/var/opt/agocontrol/datalogger.sql $(1)/var/opt/agocontrol
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agodrain.py $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/myavahi.py $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agoctrl.sh $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/convert-config.sh $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agososreport.sh $(1)/opt/agocontrol/bin
-	$(INSTALL_DIR) $(1)/etc/security/limits.d/agocontrol.conf
-	$(CP) $(PKG_INSTALL_DIR)/etc/security/limits.d/agocontrol.conf/security-limits.conf $(1)/etc/security/limits.d/agocontrol.conf
-	$(INSTALL_DIR) $(1)/etc/sysctl.d/agocontrol.conf/
-	$(CP) $(PKG_INSTALL_DIR)/etc/sysctl.d/agocontrol.conf/sysctl.conf $(1)/etc/sysctl.d/agocontrol.conf
-endef
-
 
