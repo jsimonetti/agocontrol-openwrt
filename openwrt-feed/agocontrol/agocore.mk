@@ -1,7 +1,7 @@
 define Package/agocontrol-resolver
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-resolver
-  DEPENDS:=+libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem +boost-system
+  DEPENDS:=+libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem +boost-system +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-resolver),)
@@ -22,7 +22,7 @@ endef
 define Package/agocontrol-rpc
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-rpc
-  DEPENDS:=+libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem +libpthread
+  DEPENDS:=+libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem +libpthread +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-rpc),)
@@ -50,7 +50,7 @@ endef
 define Package/agocontrol-timer
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-timer
-  DEPENDS:=+libagoclient +libhdate1
+  DEPENDS:=+libagoclient +libhdate1 +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-timer),)
@@ -71,7 +71,7 @@ endef
 define Package/agocontrol-datalogger
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-datalogger
-  DEPENDS:=+libagoclient +boost-date_time +libsqlite3
+  DEPENDS:=+libagoclient +boost-date_time +libsqlite3 +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-datalogger),)
@@ -94,7 +94,7 @@ endef
 define Package/agocontrol-lua
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-lua
-  DEPENDS:=+libagoclient @BROKEN
+  DEPENDS:=+libagoclient +agocontrol-common @BROKEN
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-lua),)
@@ -113,7 +113,7 @@ endef
 define Package/agocontrol-messagesend
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-messagesend
-  DEPENDS:=+libagoclient
+  DEPENDS:=+libagoclient +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-messagesend),)
@@ -132,7 +132,7 @@ endef
 define Package/agocontrol-scenario
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-scenario
-  DEPENDS:=+libagoclient
+  DEPENDS:=+libagoclient +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-scenario),)
@@ -154,7 +154,7 @@ endef
 define Package/agocontrol-event
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-event
-  DEPENDS:=+libagoclient
+  DEPENDS:=+libagoclient +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-event),)
@@ -176,7 +176,7 @@ endef
 define Package/agocontrol-security
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-security
-  DEPENDS:=+libagoclient
+  DEPENDS:=+libagoclient +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-security),)
