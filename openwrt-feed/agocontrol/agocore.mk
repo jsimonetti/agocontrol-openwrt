@@ -9,8 +9,8 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-resolver),)
 endif
 
 define Package/agocontrol-resolver/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agoresolver $(1)/opt/agocontrol/bin
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agoresolver $(1)$(BINDIR)
 endef
 #	$(INSTALL_DIR) $(1)/lib/systemd/system
 #	$(CP) $(PKG_INSTALL_DIR)/lib/systemd/system/agoresolver.service $(1)/lib/systemd/system
@@ -30,17 +30,17 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-rpc),)
 endif
 
 define Package/agocontrol-rpc/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agorpc $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/rpc-htpasswd $(1)/opt/agocontrol/bin
-	$(INSTALL_DIR) $(1)/opt/agocontrol/html/
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/html/* $(1)/opt/agocontrol/html/
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agorpc $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/rpc-htpasswd $(1)$(BINDIR)
+	$(INSTALL_DIR) $(1)$(HTMLDIR)/
+	$(CP) $(PKG_INSTALL_DIR)$(HTMLDIR)/* $(1)$(HTMLDIR)/
 	$(INSTALL_DIR) $(1)/lib/systemd/system
 	$(CP) $(PKG_INSTALL_DIR)/lib/systemd/system/agorpc.service $(1)/lib/systemd/system/
-	$(INSTALL_DIR) $(1)/etc/opt/agocontrol/rpc
-	$(CP) $(PKG_INSTALL_DIR)/etc/opt/agocontrol/rpc/rpc_cert.pem $(1)/etc/opt/agocontrol/rpc/
-	$(INSTALL_DIR) $(1)/etc/opt/agocontrol/conf.d
-	$(CP) $(PKG_INSTALL_DIR)/etc/opt/agocontrol/conf.d/rpc.conf $(1)/etc/opt/agocontrol/conf.d/
+	$(INSTALL_DIR) $(1)$(CONFDIR)/rpc
+	$(CP) $(PKG_INSTALL_DIR)$(CONFDIR)/rpc/rpc_cert.pem $(1)$(CONFDIR)/rpc/
+	$(INSTALL_DIR) $(1)$(CONFDIR)/conf.d
+	$(CP) $(PKG_INSTALL_DIR)$(CONFDIR)/conf.d/rpc.conf $(1)$(CONFDIR)/conf.d/
 endef
 
 
@@ -58,8 +58,8 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-timer),)
 endif
 
 define Package/agocontrol-timer/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agotimer $(1)/opt/agocontrol/bin
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agotimer $(1)$(BINDIR)
 	$(INSTALL_DIR) $(1)/lib/systemd/system
 	$(CP) $(PKG_INSTALL_DIR)/lib/systemd/system/agotimer.service $(1)/lib/systemd/system/
 endef
@@ -79,8 +79,8 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-datalogger),)
 endif
 
 define Package/agocontrol-datalogger/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agodatalogger $(1)/opt/agocontrol/bin
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agodatalogger $(1)$(BINDIR)
 	$(INSTALL_DIR) $(1)/lib/systemd/system
 	$(CP) $(PKG_INSTALL_DIR)/lib/systemd/system/agodatalogger.service $(1)/lib/systemd/system/
 endef
@@ -102,8 +102,8 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-lua),)
 endif
 
 define Package/agocontrol-lua/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agolua $(1)/opt/agocontrol/bin
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agolua $(1)$(BINDIR)
 endef
 
 
@@ -121,8 +121,8 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-messagesend),)
 endif
 
 define Package/agocontrol-messagesend/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/messagesend $(1)/opt/agocontrol/bin
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/messagesend $(1)$(BINDIR)
 endef
 
 
@@ -140,9 +140,9 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-scenario),)
 endif
 
 define Package/agocontrol-scenario/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agoscenario $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/convert-scenario.py $(1)/opt/agocontrol/bin
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agoscenario $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/convert-scenario.py $(1)$(BINDIR)
 	$(INSTALL_DIR) $(1)/lib/systemd/system
 	$(CP) $(PKG_INSTALL_DIR)/lib/systemd/system/agoscenario.service $(1)/lib/systemd/system/
 endef
@@ -162,9 +162,9 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-event),)
 endif
 
 define Package/agocontrol-event/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agoevent $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/convert-event.py $(1)/opt/agocontrol/bin
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agoevent $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/convert-event.py $(1)$(BINDIR)
 	$(INSTALL_DIR) $(1)/lib/systemd/system
 	$(CP) $(PKG_INSTALL_DIR)/lib/systemd/system/agoevent.service $(1)/lib/systemd/system/
 endef
@@ -184,8 +184,8 @@ ifeq ($(CONFIG_PACKAGE_agocontrol-security),)
 endif
 
 define Package/agocontrol-security/install
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agosecurity $(1)/opt/agocontrol/bin
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agosecurity $(1)$(BINDIR)
 endef
 
 

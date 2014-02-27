@@ -62,11 +62,11 @@ define Package/libagoclient
 endef
 
 define Package/libagoclient/install
-	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libagoclient.so* $(1)/usr/lib
+	$(INSTALL_DIR) $(1)$(LIBDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(LIBDIR)/libagoclient.so* $(1)$(LIBDIR)
 endef
-#	/usr/include/agocontrol/agoclient.h
-#	/usr/include/agocontrol/CDataFile.h
+#	$(INCDIR)/agoclient.h
+#	$(INCDIR)/CDataFile.h
 
 ifeq ($(CONFIG_PACKAGE_libagoclient),)
   CMAKE_OPTIONS += -DBUILD_SHARED=OFF
@@ -82,22 +82,22 @@ define Package/agocontrol-common
 endef
 
 define Package/agocontrol-common/install
-	$(INSTALL_DIR) $(1)/etc/opt/agocontrol/conf.d
-	$(CP) $(PKG_INSTALL_DIR)/etc/opt/agocontrol/conf.d/system.conf $(1)/etc/opt/agocontrol/conf.d
-	$(CP) $(PKG_INSTALL_DIR)/etc/opt/agocontrol/schema.yaml $(1)/etc/opt/agocontrol
-	$(INSTALL_DIR) $(1)/opt/agocontrol/var
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/var/inventory.sql $(1)/opt/agocontrol/var
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/var/datalogger.sql $(1)/opt/agocontrol/var
-	$(INSTALL_DIR) $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agodrain.py $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/myavahi.py $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agoctrl.sh $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/convert-config.py $(1)/opt/agocontrol/bin
-	$(CP) $(PKG_INSTALL_DIR)/opt/agocontrol/bin/agososreport.sh $(1)/opt/agocontrol/bin
-	$(INSTALL_DIR) $(1)/etc/security/limits.d/agocontrol.conf
-	$(CP) $(PKG_INSTALL_DIR)/etc/security/limits.d/agocontrol.conf/security-limits.conf $(1)/etc/security/limits.d/agocontrol.conf
-	$(INSTALL_DIR) $(1)/etc/sysctl.d/agocontrol.conf/
-	$(CP) $(PKG_INSTALL_DIR)/etc/sysctl.d/agocontrol.conf/sysctl.conf $(1)/etc/sysctl.d/agocontrol.conf
+	$(INSTALL_DIR) $(1)$(CONFDIR)/conf.d
+	$(CP) $(PKG_INSTALL_DIR)$(CONFDIR)/conf.d/system.conf $(1)$(CONFDIR)/conf.d
+	$(CP) $(PKG_INSTALL_DIR)$(CONFDIR)/schema.yaml $(1)$(CONFDIR)
+	$(INSTALL_DIR) $(1)$(DATADIR)
+	$(CP) $(PKG_INSTALL_DIR)$(DATADIR)/inventory.sql $(1)$(DATADIR)
+	$(CP) $(PKG_INSTALL_DIR)$(DATADIR)/datalogger.sql $(1)$(DATADIR)
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agodrain.py $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/myavahi.py $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agoctrl.sh $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/convert-config.py $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agososreport.sh $(1)$(BINDIR)
+	$(INSTALL_DIR) $(1)$(ETCDIR)/security/limits.d/agocontrol.conf
+	$(CP) $(PKG_INSTALL_DIR)$(ETCDIR)/security/limits.d/agocontrol.conf/security-limits.conf $(1)$(ETCDIR)/security/limits.d/agocontrol.conf
+	$(INSTALL_DIR) $(1)$(ETCDIR)/sysctl.d/agocontrol.conf/
+	$(CP) $(PKG_INSTALL_DIR)$(ETCDIR)/sysctl.d/agocontrol.conf/sysctl.conf $(1)$(ETCDIR)/sysctl.d/agocontrol.conf
 endef
 
 
