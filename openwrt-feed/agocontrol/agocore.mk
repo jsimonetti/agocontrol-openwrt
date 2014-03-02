@@ -22,7 +22,7 @@ endef
 define Package/agocontrol-rpc
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-rpc
-  DEPENDS:=+libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem +libpthread +agocontrol-common
+  DEPENDS:=+libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem +libpthread +agocontrol-common +libssl
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-rpc),)
@@ -104,6 +104,25 @@ endif
 define Package/agocontrol-lua/install
 	$(INSTALL_DIR) $(1)$(BINDIR)
 	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agolua $(1)$(BINDIR)
+endef
+
+
+##
+
+
+define Package/agocontrol-drain
+  $(call Package/agocontrol/default)
+  TITLE:=agocontrol-drain
+  DEPENDS:=+libagoclient +agocontrol-common
+endef
+
+ifeq ($(CONFIG_PACKAGE_agocontrol-drain),)
+  CMAKE_OPTIONS += -DBUILD_CORE_drain=OFF
+endif
+
+define Package/agocontrol-drain/install
+	$(INSTALL_DIR) $(1)$(BINDIR)
+	$(CP) $(PKG_INSTALL_DIR)$(BINDIR)/agodrain $(1)$(BINDIR)
 endef
 
 

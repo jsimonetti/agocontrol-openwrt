@@ -122,6 +122,7 @@ define Package/qpidd/postinst
 # check if we are on real system
 if [ -z "$${IPKG_INSTROOT}" ]; then
 	echo "Enabling rc.d symlink for qpidd"
+        chmod +x /etc/init.d/qpidd
 	/etc/init.d/qpidd enable
 fi
 exit 0
