@@ -22,7 +22,7 @@ endef
 define Package/agocontrol-rpc
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-rpc
-  DEPENDS:=+libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem +libpthread +agocontrol-common +libssl
+  DEPENDS:=+libyaml-cpp +libagoclient +libsqlite3 +boost-filesystem +libpthread +agocontrol-common +libopenssl
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-rpc),)

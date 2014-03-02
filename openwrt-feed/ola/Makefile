@@ -24,11 +24,12 @@ PKG_BUILD_DEPENDS:=protobuf/host
 include $(INCLUDE_DIR)/package.mk
 
 define Package/ola/Default
-  SECTION:=utils
-  CATEGORY:=Utilities
+  SECTION:=agocontrol
+  CATEGORY:=AgoControl
+  SUBMENU:=OLA
   TITLE:=Open Lighting Architecture
   URL:=http://code.google.com/p/linux-lighting/
-  DEPENDS:=+protobuf +libmicrohttpd +libusb-1.0 +libuuid +libstdcpp +libpthread +librt
+  DEPENDS:=+protobuf +libmicrohttpd +libusb-1.0 +libuuid +libstdcpp +libpthread +librt +cppunit
 endef
 
 define Package/olad
