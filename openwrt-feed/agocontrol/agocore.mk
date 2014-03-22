@@ -50,7 +50,7 @@ endef
 define Package/agocontrol-timer
   $(call Package/agocontrol/default)
   TITLE:=agocontrol-timer
-  DEPENDS:=+libagoclient +libhdate1 +agocontrol-common
+  DEPENDS:=+libagoclient +agocontrol-common
 endef
 
 ifeq ($(CONFIG_PACKAGE_agocontrol-timer),)

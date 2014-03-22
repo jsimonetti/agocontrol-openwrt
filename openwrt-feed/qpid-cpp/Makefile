@@ -2,12 +2,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=qpid-cpp
-PKG_VERSION:=0.24
+PKG_VERSION:=0.26
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://apache.cs.uu.nl/dist/qpid/$(PKG_VERSION)
-PKG_SHA1SUM:=a1449cdb5b6319f0c0e47a47fbd97d539e79804d
+PKG_SHA1SUM:=df8ecab9415ced204d71ffdb73e0dde3aa60d428
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/qpidc-$(PKG_VERSION)
 

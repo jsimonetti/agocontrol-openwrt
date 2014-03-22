@@ -4,9 +4,8 @@ include $(TOPDIR)/rules.mk
 PKG_NAME:=agocontrol
 PKG_VERSION:=$(shell date +%Y%m%d)
 PKG_RELEASE=$(shell date +%H%M%S)
-PKG_SOURCE_VERSION:=cmake-support
+PKG_SOURCE_VERSION:=master
 PKG_SOURCE_URL:=http://agocontrol.com/agocontrol.git
-PKG_SOURCE_URL:=file:///home/jeroen/dev/agocontrol
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
