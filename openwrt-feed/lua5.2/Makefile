@@ -56,7 +56,7 @@ endef
 
 define Package/lua52
 $(call Package/lua52/Default)
-  DEPENDS:=+liblua52
+  DEPENDS:=+liblua52 +libncurses +libreadline
   TITLE+= (interpreter)
 endef
 
@@ -91,6 +91,7 @@ define Build/Configure
 endef
 
 TARGET_CFLAGS += -DLUA_USE_LINUX $(FPIC) -std=gnu99
+TARGET_LDFLAGS += -lcurses
 
 ifneq ($(CONFIG_USE_EGLIBC),)
   ifeq ($(CONFIG_EGLIBC_OPTION_EGLIBC_UTMP),)
@@ -144,13 +145,11 @@ endef
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/local/include
 	$(CP) $(PKG_INSTALL_DIR)/usr/local/include/lua{,lib,conf}.h $(1)/usr/local/include/
+	$(CP) $(PKG_INSTALL_DIR)/usr/local/include/lua.hpp $(1)/usr/local/include/
 	$(CP) $(PKG_INSTALL_DIR)/usr/local/include/lauxlib.h $(1)/usr/local/include/
-	$(CP) $(PKG_INSTALL_DIR)/usr/local/include/lnum_config.h $(1)/usr/local/include/
 	$(INSTALL_DIR) $(1)/usr/local/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/local/lib/liblua.{a,so*} $(1)/usr/local/lib/
-	ln -sf liblua.so.$(PKG_VERSION) $(1)/usr/local/lib/liblualib.so
+	$(CP) $(PKG_BUILD_DIR)/src/liblua.{a,so*} $(1)/usr/local/lib/
 	$(INSTALL_DIR) $(1)/usr/local/lib/pkgconfig
-	$(CP) $(PKG_BUILD_DIR)/etc/lua.pc $(1)/usr/local/lib/pkgconfig/
 endef
 
 define Package/liblua/install
