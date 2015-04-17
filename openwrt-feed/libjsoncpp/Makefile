@@ -26,7 +26,7 @@ endef
 define Build/Prepare
 	. $(INCLUDE_DIR)/shell.sh
 	gzip -dc $(DL_DIR)/$(PKG_SOURCE) | $(TAR) -C $(BUILD_DIR) -xf -
-	cd $(PKG_BUILD_DIR) && $(PATCH) -p0 < $(SOURCE)/patches/cmake_support.patch
+	cd $(PKG_BUILD_DIR) && $(PATCH) -p0 < $(TOPDIR)/$(SOURCE)/patches/cmake_support.patch
 endef
 
 define Build/InstallDev
